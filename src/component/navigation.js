@@ -102,9 +102,9 @@ const Navigation = ({getData}) => {
         </button>
       }
 
-      {/* <div>
-        MAX_PAGE: {countPage}
-      </div> */}
+      <div>
+        MAX_PAGE: {Math.round(countPage)}
+      </div>
 
       <Select />
 

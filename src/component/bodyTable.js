@@ -1,25 +1,25 @@
 import React from 'react';
 
-const BodyTable = ({data}) => {
+const BodyTable = ({ data, onSorting}) => {
 
-  const Item = ({data}) => {
+  const Item = ({ data }) => {
 
     return (
-      <div className="user-info">
+      <tr className="user-info" >
 
-        <div> 
+        <td >
           UserId: {data.userId}
-        </div>
+        </td>
 
-        <div> 
+        <td>
           Id: {data.id}
-        </div>
+        </td>
 
-        <div> 
+        <td>
           Title: {data.title}
-        </div>
+        </td>
 
-        <div> 
+        <td>
           Done:
           <input 
             type="checkbox"
@@ -27,20 +27,41 @@ const BodyTable = ({data}) => {
             checked={data.completed}
             readOnly
           />
-        </div>
+        </td>
 
-      </div>
+      </tr>
     );
   };
 
   return (
-    <div className="body">
+    <table className="body">
+      <thead>
+        <tr>
+          <th onClick={() => onSorting('UserId')}>
+            UserId
+          </th>
 
-      {data.map((item) =>
-        <Item data={item} key={item.id}/>
-      )}
+          <th onClick={() => onSorting('Id')}>
+            Id
+          </th>
 
-    </div>
+          <th onClick={() => onSorting('Title')}>
+            Title
+          </th>
+
+          <th>
+            Done
+          </th>
+        </tr>
+      </thead> 
+      <tbody> 
+        {data.map((item) =>
+          <Item data={item} key={item.id}/>
+        )}
+      </tbody>
+      
+
+    </table>
   );
 }
 
