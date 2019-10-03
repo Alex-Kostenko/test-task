@@ -60,21 +60,17 @@ const App = () => {
   }
 
   const handleSort = (sortTitle) => {
-    console.log(data);
 
     switch (sortTitle) {
       case 'id':
-        console.log('id');
         setData(sortById(data, sortTitle));
         break;
 
       case 'userId':
-        console.log('userId');
         setData(sortByUserId(data, sortTitle));
         break;
-        
+
       case 'title':
-        console.log('title');
         setData(sortByAbc(data, sortTitle));
         break;
     
