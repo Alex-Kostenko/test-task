@@ -19,11 +19,15 @@ const BodyTable = ({data}) => {
           Title: {data.title}
         </div>
 
-        <input 
-          type="checkbox"
-          name="checkbox"
-          checked={data.completed}
-        />
+        <div> 
+          Done:
+          <input 
+            type="checkbox"
+            name="checkbox"
+            checked={data.completed}
+            readOnly
+          />
+        </div>
 
       </div>
     );
@@ -33,8 +37,8 @@ const BodyTable = ({data}) => {
     <div className="body">
       {console.log(data)}
 
-      {data.map((item, index) => 
-        <Item data={item} />
+      {data.map((item) =>
+        <Item data={item} key={item.id}/>
       )}
 
     </div>

@@ -28,6 +28,7 @@ const Navigation = ({getData}) => {
     const handleChangeLimit = (e) => {
       setLimitItems(e.target.value)
       setPagePagination(1)
+      setStartItem(0)
       getData(0, e.target.value);
     }
 

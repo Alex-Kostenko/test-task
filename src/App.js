@@ -13,8 +13,6 @@ const App = () => {
   const [data, setData] = useState([]);
 
   async function getData(startItem = 0, limitItems = 5) {
-    console.log(`https://jsonplaceholder.typicode.com/todos?_start=${startItem}&_limit=${limitItems}`);
-    
     await fetch(`https://jsonplaceholder.typicode.com/todos?_start=${startItem}&_limit=${limitItems}`)
       .then(function (response) {
         return response.json();
