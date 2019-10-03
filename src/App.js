@@ -35,34 +35,47 @@ const App = () => {
       });
   }
 
-  const sortByNumbers = (arr, item) => {
-    return arr.sort((a, b) => a.item < b.item ? 1 : -1).concat();
+  const sortById = (arr, item) => {
+    return arr.sort((a, b) => a.id > b.id ? 1 : -1).concat();
   }
 
-  const sortByAbc = (a, b) => {
-    if (a.title < b.title) {
-      return -1;
+  const sortByUserId = (arr, item) => {
+    return arr.sort((a, b) => a.userId > b.userId ? 1 : -1).concat();
+  }
+
+  const sortByAbc = (arr, item) => {
+    function rules(a, b) {
+
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+
+      return 0;
     }
-    if (a.title > b.title) {
-      return 1;
-    }
-    return 0;
+
+    return arr.sort(rules).concat();
   }
 
   const handleSort = (sortTitle) => {
     console.log(data);
-    
 
     switch (sortTitle) {
-      case 'Id':
-        setData(sortByNumbers(data, sortTitle))
+      case 'id':
+        console.log('id');
+        setData(sortById(data, sortTitle));
         break;
 
-      case 'UserId':
-        setData(sortByNumbers(data, sortTitle))
+      case 'userId':
+        console.log('userId');
+        setData(sortByUserId(data, sortTitle));
         break;
-      case 'Title':
-        setData(data.sort(sortByAbc).concat())
+        
+      case 'title':
+        console.log('title');
+        setData(sortByAbc(data, sortTitle));
         break;
     
       default:

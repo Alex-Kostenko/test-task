@@ -37,15 +37,15 @@ const BodyTable = ({ data, onSorting}) => {
     <table className="body">
       <thead>
         <tr>
-          <th onClick={() => onSorting('UserId')}>
+          <th onClick={() => onSorting('userId')}>
             UserId
           </th>
 
-          <th onClick={() => onSorting('Id')}>
+          <th onClick={() => onSorting('id')}>
             Id
           </th>
 
-          <th onClick={() => onSorting('Title')}>
+          <th onClick={() => onSorting('title')}>
             Title
           </th>
 
