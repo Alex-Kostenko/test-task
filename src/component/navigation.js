@@ -1,18 +1,36 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const Navigation = ({getData}) => {
 
+  const getCountPage = async (limit = 5) => {
+    await fetch(`https://jsonplaceholder.typicode.com/todos?_start=1`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then( function (json) {
+        setCountPage(json.length / limit)
+        return json.length
+      });
+  };
+
   const [pagePagination, setPagePagination] = useState(1);
   const [startItem, setStartItem] = useState(0);
   const [limitItems, setLimitItems] = useState(5);
+  const [countPage, setCountPage] = useState();
+
+  useEffect(() => {
+    getCountPage();
+  }, []);
 
   const handleNextClick = (page, limit) => {
-    setStartItem(page)
-    setPagePagination(pagePagination + 1)
-    getData(page, limit);
-  }
+    if (countPage > pagePagination) {
+      setStartItem(page);
+      setPagePagination(pagePagination + 1);
+      getData(page, limit);
+    }
+  };
 
   const handlePrevClick = (page, limit) => {
     if (startItem > 0) {
@@ -20,7 +38,7 @@ const Navigation = ({getData}) => {
       setPagePagination(pagePagination - 1)
       getData(page, limit);
     }
-  }
+  };
 
   const Select = () => {
     const ARRAY_VALUES = [5,10,15,20,30,50]
@@ -30,6 +48,7 @@ const Navigation = ({getData}) => {
       setPagePagination(1)
       setStartItem(0)
       getData(0, e.target.value);
+      getCountPage(e.target.value);
     }
 
     return (
@@ -37,30 +56,55 @@ const Navigation = ({getData}) => {
         name="select" 
         value={limitItems} 
         onChange={(e) => handleChangeLimit(e, startItem)}
+        className='nav-select'
       >
-        {ARRAY_VALUES.map((item)=>
+        {ARRAY_VALUES.map((item) =>
           <option value={item} key={item}>  {item}  </option>
         )}
       </select>
     )
-  }
+  };
 
   return (
     <div className="navigation">
 
-      <button onClick={() => handlePrevClick((parseInt(startItem) - parseInt(limitItems)), limitItems)} name='Prev'> 
-        {pagePagination - 1} 
-      </button>
+      {startItem > 0 &&
+        <button
+          onClick={() => handlePrevClick(
+            (parseInt(startItem) - parseInt(limitItems))
+            , limitItems
+            )
+          }
+          name='Prev'
+          className='nav-btn'
+        >
+          {pagePagination - 1}
+        </button>
+      }
 
-      <button name='current' disabled>
+      <button
+        name='current'
+        disabled
+        className='nav-btn'
+      >
         {pagePagination} 
       </button>
 
-      <button onClick={() => handleNextClick((parseInt(startItem) + parseInt(limitItems)), limitItems)} name='Next'>
-        {pagePagination + 1} 
-      </button>
+      {countPage > pagePagination && 
+        <button 
+          onClick={() => handleNextClick(
+            (parseInt(startItem) + parseInt(limitItems))
+            , limitItems)} 
+          name='Next'
+          className='nav-btn'
+        >
+          {pagePagination + 1}
+        </button>
+      }
 
-      <br/>
+      {/* <div>
+        MAX_PAGE: {countPage}
+      </div> */}
 
       <Select />
 

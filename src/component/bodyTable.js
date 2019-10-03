@@ -31,11 +31,10 @@ const BodyTable = ({data}) => {
 
       </div>
     );
-  }  
+  };
 
   return (
     <div className="body">
-      {console.log(data)}
 
       {data.map((item) =>
         <Item data={item} key={item.id}/>
