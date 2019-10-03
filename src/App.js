@@ -1,24 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import {useState, useEffect} from 'react';
 import './App.css';
+import Navigation from './component/navigation';
+import BodyTable from './component/bodyTable';
 
-function App() {
+const App = () => {
+
+  useEffect(() => {
+    getData()
+  }, []);
+
+  const [data, setData] = useState([]);
+
+  async function getData(startItem = 0, limitItems = 5) {
+    console.log(`https://jsonplaceholder.typicode.com/todos?_start=${startItem}&_limit=${limitItems}`);
+    
+    await fetch(`https://jsonplaceholder.typicode.com/todos?_start=${startItem}&_limit=${limitItems}`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        setData(json)
+      });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <BodyTable 
+        data={data}
+      />
+
+      <Navigation 
+        getData={(page, limit) => getData(page, limit)}
+      />
+
     </div>
   );
 }
