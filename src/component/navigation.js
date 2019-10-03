@@ -10,8 +10,8 @@ const Navigation = ({getData}) => {
         return response.json();
       })
       .then( function (json) {
-        setCountPage(json.length / limit)
-        return json.length
+        setCountPage(json.length / limit);
+        return json.length;
       });
   };
 
@@ -34,8 +34,8 @@ const Navigation = ({getData}) => {
 
   const handlePrevClick = (page, limit) => {
     if (startItem > 0) {
-      setStartItem(page)
-      setPagePagination(pagePagination - 1)
+      setStartItem(page);
+      setPagePagination(pagePagination - 1);
       getData(page, limit);
     }
   };
