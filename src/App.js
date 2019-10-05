@@ -7,12 +7,15 @@ import BodyTable from './component/bodyTable';
 const TABLE_COLUMNS = [
   {
     label: 'UserId',
+    key: 'userId',
     sort: 'default',
   }, {
-    label: 'Id',
+    label: 'Id',   
+    key: 'id',
     sort: 'default',
   }, {
     label: 'Title',
+    key: 'title',
     sort: 'default',
   }
 ];
@@ -35,32 +38,76 @@ const App = () => {
       });
   }
 
-  const sortById = (arr, item) => {
-    return arr.sort((a, b) => a.id > b.id ? 1 : -1).concat();
+  const sortById = ( arr ) => {
+    const id = sortdata.findIndex(x => x.key === 'id')
+    let sortArray = sortdata.concat();
+
+    if ( sortdata[id].sort === 'default') {
+      sortArray[id].sort = 'asc';
+    } else if ( sortdata[id].sort === 'desc') { 
+      sortArray[id].sort = 'asc';
+    } else { 
+      sortArray[id].sort = 'desc';
+    }
+    
+    setSortData(sortArray);
+
+    if ( sortArray[id].sort === 'asc' ) {
+      return arr.sort((a, b) => a.id > b.id ? 1 : -1).concat();
+    } 
+
+    return arr.sort((a, b) => a.id < b.id ? 1 : -1).concat();
+
   }
 
   const sortByUserId = (arr, item) => {
-    return arr.sort((a, b) => a.userId > b.userId ? 1 : -1).concat();
+
+
+    const id = sortdata.findIndex(x => x.key === 'userId')
+    let sortArray = sortdata.concat();
+
+    if ( sortdata[id].sort === 'default') {
+      sortArray[id].sort = 'asc';
+    } else if ( sortdata[id].sort === 'desc') { 
+      sortArray[id].sort = 'asc';
+    } else { 
+      sortArray[id].sort = 'desc';
+    }
+    
+    setSortData(sortArray);
+    
+    if ( sortArray[id].sort === 'asc' ) {
+      return arr.sort((a, b) => a.userId > b.userId ? 1 : -1).concat();
+    } 
+
+    return arr.sort((a, b) => a.userId < b.userId ? 1 : -1).concat();
   }
 
-  const sortByAbc = (arr, item) => {
-    function rules(a, b) {
+  const sortByAbc = (arr) => {
 
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
 
-      return 0;
+    const id = sortdata.findIndex(x => x.key === 'title')
+    let sortArray = sortdata.concat();
+
+    if ( sortdata[id].sort === 'default') {
+      sortArray[id].sort = 'asc';
+    } else if ( sortdata[id].sort === 'desc') { 
+      sortArray[id].sort = 'asc';
+    } else { 
+      sortArray[id].sort = 'desc';
     }
-
-    return arr.sort(rules).concat();
+    
+    setSortData(sortArray);
+    
+    if ( sortArray[id].sort === 'asc' ) {
+      return arr.sort((a, b) => a.title > b.title ? 1 : -1).concat();
+    } 
+    return arr.sort((a, b) => a.title < b.title ? 1 : -1).concat();
   }
 
   const handleSort = (sortTitle) => {
-
+    console.log(sortTitle);
+    
     switch (sortTitle) {
       case 'id':
         setData(sortById(data, sortTitle));
@@ -88,6 +135,7 @@ const App = () => {
       <BodyTable 
         data={data}
         onSorting={(sortTitle) => handleSort(sortTitle)}
+        tableHead={sortdata}
       />
 
     </div>

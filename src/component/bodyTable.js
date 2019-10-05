@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BodyTable = ({ data, onSorting}) => {
+const BodyTable = ({ data, onSorting, tableHead}) => {
 
   const Item = ({ data }) => {
 
@@ -37,17 +37,11 @@ const BodyTable = ({ data, onSorting}) => {
     <table className="body">
       <thead>
         <tr>
-          <th onClick={() => onSorting('userId')}>
-            UserId
-          </th>
-
-          <th onClick={() => onSorting('id')}>
-            Id
-          </th>
-
-          <th onClick={() => onSorting('title')}>
-            Title
-          </th>
+          {tableHead.map((item) => 
+            <th onClick={() => onSorting(item.key)}>
+              {item.label}
+            </th>
+          )}
 
           <th>
             Done

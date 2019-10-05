@@ -103,7 +103,8 @@ const Navigation = ({getData}) => {
       }
 
       <div>
-        MAX_PAGE: {Math.round(countPage)}
+        MAX_PAGE: {Math.round(countPage)} <br/>
+        Разрешение экрана: <b> {window.innerWidth} × {window.innerHeight} px.</b>
       </div>
 
       <Select />
