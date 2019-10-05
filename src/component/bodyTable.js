@@ -38,7 +38,7 @@ const BodyTable = ({ data, onSorting, tableHead}) => {
       <thead>
         <tr>
           {tableHead.map((item) => 
-            <th onClick={() => onSorting(item.key)}>
+            <th key={item.label} onClick={() => onSorting(item.key)}>
               {item.label}
             </th>
           )}

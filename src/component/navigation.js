@@ -1,19 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import getCountPage from '../requests/getCountPage';
 
 
 const Navigation = ({getData}) => {
-
-  const getCountPage = async (limit = 5) => {
-    await fetch(`https://jsonplaceholder.typicode.com/todos?_start=1`)
-      .then(function (response) {
-        return response.json();
-      })
-      .then( function (json) {
-        setCountPage(json.length / limit);
-        return json.length;
-      });
-  };
 
   const [pagePagination, setPagePagination] = useState(1);
   const [startItem, setStartItem] = useState(0);
@@ -21,7 +11,7 @@ const Navigation = ({getData}) => {
   const [countPage, setCountPage] = useState();
 
   useEffect(() => {
-    getCountPage();
+    getCountPage(5, setCountPage);
   }, []);
 
   const handleNextClick = (page, limit) => {
@@ -48,7 +38,7 @@ const Navigation = ({getData}) => {
       setPagePagination(1)
       setStartItem(0)
       getData(0, e.target.value);
-      getCountPage(e.target.value);
+      getCountPage(e.target.value, setCountPage);
     }
 
     return (
