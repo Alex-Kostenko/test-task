@@ -1,12 +1,12 @@
 
-const getCountPage = async (limit = 5, setCountPage) => {
-    await fetch(`https://jsonplaceholder.typicode.com/todos?_start=1`)
+const getCountPage = (limit = 5, setCountPage) => {
+    return fetch(`https://jsonplaceholder.typicode.com/todos?_start=1`)
         .then(function (response) {
-        return response.json();
+            return response.json();
         })
         .then( function (json) {
-        setCountPage(json.length / limit);
-        return json.length;
+            setCountPage(json.length / limit);
+            return json.length;
         });
 };
 
