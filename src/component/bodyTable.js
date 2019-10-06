@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BodyTable = ({ data, onSorting, tableHead}) => {
+const BodyTable = ({ data, onSorting, tableHead }) => {
 
   const Item = ({ data }) => {
 

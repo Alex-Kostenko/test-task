@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import getCountPage from '../requests/getCountPage';
 
+import getCountPage from '../services/getCountPage';
 
-const Navigation = ({getData}) => {
+const Navigation = ({ getData }) => {
 
   const [pagePagination, setPagePagination] = useState(1);
   const [startItem, setStartItem] = useState(0);
@@ -48,6 +48,7 @@ const Navigation = ({getData}) => {
         onChange={(e) => handleChangeLimit(e, startItem)}
         className='nav-select'
       >
+
         {ARRAY_VALUES.map((item) =>
           <option value={item} key={item}>  {item}  </option>
         )}

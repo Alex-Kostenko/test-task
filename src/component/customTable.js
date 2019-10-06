@@ -1,9 +1,9 @@
-import React from 'react';
-import {useState, useEffect} from 'react';
-import '../App.css';
+import React, { useState, useEffect } from 'react';
+
 import Navigation from './navigation';
 import BodyTable from './bodyTable';
 
+import '../App.css';
 
 const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
 
@@ -12,7 +12,7 @@ const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
 
   useEffect(() => {
     arrayData(0, 5, setData)
-  }, []);
+  }, [arrayData]);
 
   const sortTable = ( arr, sortTitle ) => {
     const id = sortdata.findIndex(x => x.key === sortTitle)
@@ -29,32 +29,13 @@ const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
     
     setSortData(sortArray);
 
-    switch (sortTitle) {
-      case "title":
-        if ( sortArray[id].sort === 'asc' ) {
-          return arr.sort((a, b) => a.title > b.title ? 1 : -1).concat();
-        } 
-        return arr.sort((a, b) => a.title < b.title ? 1 : -1).concat();
-
-      case "id":
-        if ( sortArray[id].sort === 'asc' ) {
-          return arr.sort((a, b) => a.id > b.id ? 1 : -1).concat();
-        }
-        return arr.sort((a, b) => a.id < b.id ? 1 : -1).concat();
-
-      case "userId":
-        if ( sortArray[id].sort === 'asc' ) {
-          return arr.sort((a, b) => a.userId > b.userId ? 1 : -1).concat();
-        } 
-        return arr.sort((a, b) => a.userId < b.userId ? 1 : -1).concat();
-    
-      default:
-        break;
-    }
+    if ( sortArray[id].sort === 'asc' ) {
+      return arr.sort((a, b) => a[sortTitle] > b[sortTitle] ? 1 : -1).concat();
+    } 
+    return arr.sort((a, b) => a[sortTitle] < b[sortTitle] ? 1 : -1).concat();
 
   }
 
-  
   const handleSort = (sortTitle) => {
     if(onFilter === true) {
       setData(sortTable(data, sortTitle));

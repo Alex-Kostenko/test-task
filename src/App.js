@@ -1,8 +1,10 @@
 import React from 'react';
-import './App.css';
-import getData from './requests/getData';
-import {TABLE_COLUMNS} from './data/data';
+
+import getData from './services/getData';
+import { TABLE_COLUMNS } from './data/data';
 import CustomTable from './component/customTable';
+
+import './App.css';
 
 const App = () => {
   
