@@ -5,6 +5,9 @@ import BodyTable from './bodyTable';
 
 import '../App.css';
 
+const DESC = 'desc';
+const ASC = 'asc';
+
 const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
 
   const [data, setData] = useState([]);
@@ -20,19 +23,19 @@ const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
     let sortArray = sortdata.concat();
 
     if ( sortdata[id].sort === 'default') {
-      sortArray[id].sort = 'asc';
-    } else if ( sortdata[id].sort === 'desc') { 
-      sortArray[id].sort = 'asc';
+      sortArray[id].sort = ASC;
+    } else if (sortdata[id].sort === DESC) { 
+      sortArray[id].sort = ASC;
     } else { 
-      sortArray[id].sort = 'desc';
+      sortArray[id].sort = DESC;
     }
-    
+
     setSortData(sortArray);
 
-    if ( sortArray[id].sort === 'asc' ) {
-      return arr.sort((a, b) => a[sortTitle] > b[sortTitle] ? 1 : -1).concat();
+    if (sortArray[id].sort === ASC ) {
+      return arr.concat().sort((a, b) => a[sortTitle] > b[sortTitle] ? 1 : -1);
     } 
-    return arr.sort((a, b) => a[sortTitle] < b[sortTitle] ? 1 : -1).concat();
+    return arr.concat().sort((a, b) => a[sortTitle] < b[sortTitle] ? 1 : -1);
 
   }
 
