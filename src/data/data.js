@@ -15,9 +15,15 @@ export const TABLE_COLUMNS = [
       sort: 'default',
       type: 'string',
     }, {
-      label: 'Created at',
-      key: 'createdAt',
+      label: 'Check',
+      key: 'completed',
       sort: 'default',
-      type: 'date',
+      type: 'boolean',
     }
+    // , {
+    //   label: 'Created at',
+    //   key: 'createdAt',
+    //   sort: 'default',
+    //   type: 'date',
+    // }
   ];

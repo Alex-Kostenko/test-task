@@ -1,22 +1,40 @@
 import React from 'react';
 
 const BodyTable = ({ data, onSorting, tableHead }) => {
+  const Body = ({array}) => {
 
+      return (
+        array.map((item) =>
+          <Item data={item} key={item.id} />
+        )
+      )
+  }
+
+  const Head = ({array}) => {
+
+    return (
+      array.map((item) =>
+        <th key={item.label} onClick={() => onSorting(item.key)}>
+          {item.label}
+        </th>
+      )
+    )
+  }
   const Item = ({ data }) => {
 
     return (
       <tr className="user-info" >
 
         <td >
-          UserId: {data.userId}
+          {data.userId}
         </td>
 
         <td>
-          Id: {data.id}
+          {data.id}
         </td>
 
         <td>
-          Title: {data.title}
+          {data.title}
         </td>
 
         <td>
@@ -37,21 +55,11 @@ const BodyTable = ({ data, onSorting, tableHead }) => {
     <table className="body">
       <thead>
         <tr>
-          {tableHead.map((item) => 
-            <th key={item.label} onClick={() => onSorting(item.key)}>
-              {item.label}
-            </th>
-          )}
-
-          <th>
-            Done
-          </th>
+          <Head array={tableHead}/>
         </tr>
       </thead> 
       <tbody> 
-        {data.map((item) =>
-          <Item data={item} key={item.id}/>
-        )}
+        <Body array={data} />
       </tbody>
       
 
