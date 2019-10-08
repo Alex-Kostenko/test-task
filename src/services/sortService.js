@@ -12,9 +12,9 @@ export default function sortTable(array, sortTitle, sortdata, setSortData) {
 
   if (sortdata[id].sort === 'default') {
     options[id].sort = ASC;
-  } else if (sortdata[id].sort === DESC) { 
+  } else if (sortdata[id].sort === DESC) {
     options[id].sort = ASC;
-  } else { 
+  } else {
     options[id].sort = DESC;
   }
 
