@@ -11,6 +11,7 @@ const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
 
   const [data, setData] = useState([]);
   const [sortdata, setSortData] = useState(tableHead);
+  const [limitOnPage, setLimitOnPage] = useState('5');
 
   useEffect(() => {
     arrayData(0, 5, setData)
@@ -18,15 +19,20 @@ const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
 
   const handleSort = (sortTitle) => {
     if(onFilter === true) {
-      setData(sortTable(data, sortTitle, sortdata, setSortData));
+      setData(sortTable(data, sortTitle, sortdata, setSortData, limitOnPage));
     }
   }
-  
+
+  const dataRedures = (page, limit, setData) => {
+    arrayData(page, limit, setData);
+    setLimitOnPage(limit);
+  }
+
   return (
     <div className="App">
-      
+
       <Navigation 
-        getData={(page, limit) => arrayData(page, limit, setData)}
+        getData={(page, limit) => dataRedures(page, limit, setData)}
         onFilter={onFilter}
       />
 

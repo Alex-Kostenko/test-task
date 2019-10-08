@@ -1,3 +1,4 @@
+// import getSortData from '../services/getSortData';
 
 const DESC = 'desc';
 const ASC = 'asc';
@@ -7,18 +8,17 @@ export default function sortTable(array, sortTitle, sortdata, setSortData) {
   let options = sortdata.concat();
   let sort = options[id].sort;
   let type = options[id].type;
+  let result = [];
 
-    if (sortdata[id].sort === 'default') {
-      options[id].sort = ASC;
-    } else if (sortdata[id].sort === DESC) { 
-      options[id].sort = ASC;
-    } else { 
-      options[id].sort = DESC;
-    }
+  if (sortdata[id].sort === 'default') {
+    options[id].sort = ASC;
+  } else if (sortdata[id].sort === DESC) { 
+    options[id].sort = ASC;
+  } else { 
+    options[id].sort = DESC;
+  }
 
   setSortData(options);
-
-  let result=[];
 
   switch (type) {
     case 'number':
@@ -38,7 +38,6 @@ export default function sortTable(array, sortTitle, sortdata, setSortData) {
       result = array.concat().sort((a, b) =>
         new Date(b[sortTitle]) - new Date(a[sortTitle])
       );
-
       break;
 
   

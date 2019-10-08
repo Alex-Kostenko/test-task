@@ -24,6 +24,7 @@ code {
   min-width: 50px;
   border-radius: 5px;
 }
+
 .nav-select {
   padding: 5px;
   margin: 5px auto 10px;
@@ -31,6 +32,29 @@ code {
   border-radius: 5px;
   display: block;
 }
+
 .body {
   width: 100%
+}
+
+table thead tr{
+  background: #f7f9fb;
+}
+
+table thead tr th{
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 5px 10px;
+}
+
+table tbody tr td{
+  padding: 10px;
+}
+
+table tbody tr:nth-child(even){
+  background: #f7f9fb;
+}
+
+table tbody tr:nth-child(odd){
+  background: white;
 }
