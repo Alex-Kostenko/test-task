@@ -5,7 +5,7 @@ export const TABLE_COLUMNS = [
       sort: 'default',
       type: 'number',
     }, {
-      label: 'Id',   
+      label: 'Id',
       key: 'id',
       sort: 'default',
       type: 'number',

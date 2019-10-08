@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+button:focus {
+  outline: none;
+}
+
 .user-info {
   padding: 15px;
   border: 1px solid black;
@@ -19,10 +23,31 @@ code {
 }
 
 .nav-btn {
-  padding: 5px;
+  padding: 10px 5px;
   margin: 5px;
-  min-width: 50px;
+  min-width: 100px;
   border-radius: 5px;
+  background-image: linear-gradient(to right, #4776E6 0%, #8E54E9 51%, #4776E6 100%);
+  background-size: 200% auto;
+  transition: 0.5s;
+  border: 0;
+  color: #f7f9fb;
+  font-size: .8rem
+}
+.select-page {
+  padding: 10px 5px;
+  margin: 5px;
+  min-width: 100px;
+  border-radius: 5px;
+  background-size: 200% auto;
+  transition: 0.5s;
+  border: 0;
+  color: black;
+  font-size: .8rem
+}
+
+.nav-btn:hover { 
+  background-position: right center;
 }
 
 .nav-select {
@@ -49,6 +74,14 @@ table thead tr th{
 
 table tbody tr td{
   padding: 10px;
+}
+
+table tbody tr td:nth-child(3){
+  text-align: left;
+}
+
+table thead tr th:nth-child(3){
+  text-align: left;
 }
 
 table tbody tr:nth-child(even){

@@ -20,8 +20,7 @@ const BodyTable = ({ data, onSorting, tableHead }) => {
                 item[itemSecond]
               }
             </td>
-          )
-        })
+        )})
       );
     };
 
@@ -48,8 +47,7 @@ const BodyTable = ({ data, onSorting, tableHead }) => {
   }
 
   return (
-    <table className="body" cellSpacing="0"
->
+    <table className="body" cellSpacing="0">
       <thead>
         <Head array={tableHead}/>
       </thead> 

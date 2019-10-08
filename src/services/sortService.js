@@ -4,7 +4,7 @@ const DESC = 'desc';
 const ASC = 'asc';
 
 export default function sortTable(array, sortTitle, sortdata, setSortData) {
-  const id = sortdata.findIndex(x => x.key === sortTitle)
+  const id = sortdata.findIndex(x => x.key === sortTitle);
   let options = sortdata.concat();
   let sort = options[id].sort;
   let type = options[id].type;
@@ -42,9 +42,9 @@ export default function sortTable(array, sortTitle, sortdata, setSortData) {
 
   
     default:
-      alert('erros type')
+      alert('erros type');
       break;
   }
 
-  return sort === ASC ? result.reverse() : result
+  return sort === ASC ? result.reverse() : result;
 }

@@ -14,7 +14,7 @@ const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
   const [limitOnPage, setLimitOnPage] = useState('5');
 
   useEffect(() => {
-    arrayData(0, 5, setData)
+    arrayData(0, 5, setData);
   }, [arrayData]);
 
   const handleSort = (sortTitle) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import getCountPage from '../services/getCountPage';
+import Select from './select';
 
 const Navigation = ({ getData }) => {
 
@@ -30,32 +31,6 @@ const Navigation = ({ getData }) => {
     }
   };
 
-  const Select = () => {
-    const ARRAY_VALUES = [5,10,15,20,30,50]
-
-    const handleChangeLimit = (e) => {
-      setLimitItems(e.target.value)
-      setPagePagination(1)
-      setStartItem(0)
-      getData(0, e.target.value);
-      getCountPage(e.target.value, setCountPage);
-    }
-
-    return (
-      <select 
-        name="select" 
-        value={limitItems} 
-        onChange={(e) => handleChangeLimit(e, startItem)}
-        className='nav-select'
-      >
-
-        {ARRAY_VALUES.map((item) =>
-          <option value={item} key={item}>  {item}  </option>
-        )}
-      </select>
-    )
-  };
-
   return (
     <div className="navigation">
 
@@ -76,7 +51,7 @@ const Navigation = ({ getData }) => {
       <button
         name='current'
         disabled
-        className='nav-btn'
+        className='select-page'
       >
         {pagePagination} 
       </button>
@@ -93,12 +68,22 @@ const Navigation = ({ getData }) => {
         </button>
       }
 
-      <div>
+      {/* <div>
         MAX_PAGE: {Math.round(countPage)} <br/>
         Разрешение экрана: <b> {window.innerWidth} × {window.innerHeight} px.</b>
-      </div>
+      </div> */}
 
-      <Select />
+      <Select 
+        setLimitItems={(item) => setLimitItems(item)}
+        setPagePagination={(item) => setPagePagination(item)}
+        setStartItem={(item) => setStartItem(item)}
+        getData={(count, item) => getData(count, item)}
+        getCountPage={(count, item) => getCountPage(count, item)}
+        setCountPage={(item) => setCountPage(item)}
+        setCountPage={(item) => setCountPage(item)}
+        limitItems={limitItems}
+        startItem={startItem}
+      />
 
     </div>
   );
