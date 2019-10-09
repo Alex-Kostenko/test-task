@@ -6,7 +6,6 @@ import sortTable from '../services/sortService';
 
 import '../App.css';
 
-
 const CustomTable = ({arrayData, tableHead, onFilter = true}) => {
 
   const [data, setData] = useState([]);
